@@ -43,13 +43,13 @@ namespace TimedMathQuizTutorial
             plusLeftLabel.Text = addend1.ToString();
             plusRightLabel.Text = addend2.ToString();
 
-            // 'sum' is the same of the NumericUpDDown control.
+            // 'sum' is the name of the NumericUpDDown control.
             // This step makes sure its value is zero before
             // adding any values to it.
             sum.Value = 0;
 
             // Start the timer.
-            timeLeft = 20;
+            timeLeft = 30;
             timeLabel.Text = "30 seconds";
             timer1.Start();
 
@@ -79,7 +79,7 @@ namespace TimedMathQuizTutorial
                 // Display the new time left
                 // by updating the Time Left Label.
                 timeLeft = timeLeft - 1;
-                timeLabel.Text = timeLeft + " seconds";
+                timeLabel.Text = $"{timeLeft} seconds";
             }
             else
             {
