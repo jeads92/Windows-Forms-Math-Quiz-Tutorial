@@ -21,6 +21,11 @@ namespace TimedMathQuizTutorial
         int addend1;
         int addend2;
 
+        //These integer variables store the numbers
+        // for the subtraction problem.
+        int minuend;
+        int subtrahend;
+
         // This integer variable keeps track
         // of the remaining time left.
         int timeLeft;
@@ -48,6 +53,13 @@ namespace TimedMathQuizTutorial
             // adding any values to it.
             sum.Value = 0;
 
+            // Fill in the subtraction problem.
+            minuend = randomizer.Next(1, 101);
+            subtrahend = randomizer.Next(1, minuend);
+            minusLeftLabel.Text = minuend.ToString();
+            minusRightLabel.Text = subtrahend.ToString();
+            difference.Value = 0;
+
             // Start the timer.
             timeLeft = 30;
             timeLabel.Text = "30 seconds";
@@ -57,7 +69,8 @@ namespace TimedMathQuizTutorial
 
         private bool CheckTheAnswer()
         {
-            if (addend1 + addend2 == sum.Value)
+            if ((addend1 + addend2 == sum.Value)
+                && (minuend - subtrahend == difference.Value))
                 return true;
             else
                 return false;
@@ -109,6 +122,7 @@ namespace TimedMathQuizTutorial
                 timeLabel.Text = "Time's up!";
                 MessageBox.Show("You didn't finish in time. ", "Sorry!");
                 sum.Value = addend1 + addend2;
+                difference.Value = minuend - subtrahend;
                 startButton.Enabled = true;
             }
         }
