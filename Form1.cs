@@ -123,6 +123,11 @@ namespace TimedMathQuizTutorial
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (timeLeft <= 5)
+            {
+                timeLabel.BackColor = Color.Red;
+            }
+            
             if (CheckTheAnswer())
             {
                 // If CheckTheAnswer returns true, then the user
