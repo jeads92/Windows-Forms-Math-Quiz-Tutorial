@@ -21,6 +21,10 @@ namespace TimedMathQuizTutorial
         int addend1;
         int addend2;
 
+        // This integer variable keeps track
+        // of the remaining time left.
+        int timeLeft;
+
         /// <summary>
         /// Start the quiz by filling in all of the problems
         /// and starting the timer.
@@ -44,6 +48,11 @@ namespace TimedMathQuizTutorial
             // adding any values to it.
             sum.Value = 0;
 
+            // Start the timer.
+            timeLeft = 20;
+            timeLabel.Text = "30 seconds";
+            timer1.Start();
+
         }
 
 
@@ -61,6 +70,27 @@ namespace TimedMathQuizTutorial
         {
             StartTheQuiz();
             startButton.Enabled = false;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (timeLeft > 0)
+            {
+                // Display the new time left
+                // by updating the Time Left Label.
+                timeLeft = timeLeft - 1;
+                timeLabel.Text = timeLeft + " seconds";
+            }
+            else
+            {
+                // If the user ran out of time, stop the timer, show
+                // a MessageBox, and fill in the answers.
+                timer1.Stop();
+                timeLabel.Text = "Time's up!";
+                MessageBox.Show("You didn't finish in time. ", "Sorry!");
+                sum.Value = addend1 + addend2;
+                startButton.Enabled = true;
+            }
         }
     }
 }
